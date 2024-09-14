@@ -1,0 +1,173 @@
+/**
+ * @name GS Theme
+ * @author ApeZ
+ * @description Looks like GS with the RGB working fader and ping background based on role color.
+ * @version 1.3
+ * @authorId 1130557919730085888
+*/
+
+/* Grundlegendes Farbschema */
+:root {
+    --background-primary: #1f1f1f; /* Dunkler Hintergrund */
+    --background-secondary: #1f1f1f; /* Leicht heller für Sektionen */
+    --background-tertiary: #252525; /* Noch heller für Karten und Inputs */
+    --header-primary: #ffffff; /* Weißer Text für Header */
+    --header-secondary: #b3b3b3; /* Grauer Text für sekundäre Überschriften */
+    --text-normal: #cfcfcf; /* Leicht grauer Text für Standard */
+    --text-muted: #8f8f8f; /* Gedämpfter Text */
+    --interactive-normal: #00ff00; /* Grüne Akzente, inspiriert von gamesense.pub */
+    --interactive-hover: #00cc00; /* Hellere Grün-Akzente beim Hover */
+    --interactive-active: #009900; /* Noch hellere Akzente bei aktiven Elementen */
+    --scrollbar-thin-thumb: #00ff00; /* Grüne Scrollbar */
+}
+
+/* Ästhetische Anpassungen */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: var(--background-primary);
+}
+
+/* Text */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--header-primary);
+}
+
+p, span, a {
+    color: var(--text-normal);
+}
+
+/* Sidebar Anpassungen */
+.sidebar-2K8pFh {
+    background-color: var(--background-secondary);
+}
+
+.sidebar-2K8pFh .item-2nUIXi {
+    color: var(--interactive-normal);
+    transition: background-color 0.2s ease; /* Flüssiger Übergang */
+}
+
+.sidebar-2K8pFh .item-2nUIXi:hover {
+    background-color: var(--interactive-hover);
+}
+
+/* Nachrichtenfelder */
+.message-2qnXI6 {
+    background-color: var(--background-tertiary);
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 10px;
+    transition: background-color 0.2s ease; /* Effizienter Übergang */
+}
+/* Buttons */
+button {
+    background-color: var(--interactive-normal);
+    color: var(--header-primary);
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--interactive-hover);
+}
+
+/* Eingabefelder */
+input {
+    background-color: var(--background-tertiary);
+    color: var(--text-normal);
+    border: 1px solid var(--interactive-normal);
+    transition: border-color 0.2s ease;
+}
+
+/* Scrollbar-Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thin-thumb);
+    border-radius: 10px;
+}
+
+/* Rollen-Glow-Effekt */
+.role-2wBHPY {
+    position: relative;
+    background-color: var(--interactive-normal);
+    color: var(--header-primary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff00;
+    transition: box-shadow 0.3s ease-in-out; /* Flüssiger und ressourcenschonender Übergang */
+}
+
+.role-2wBHPY:hover {
+    box-shadow: 0 0 15px 5px #00ff00;
+}
+
+/* RGB-Leiste oben */
+#app-mount::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, 
+        rgba(255, 0, 0, 1) 0%, 
+        rgba(255, 154, 0, 1) 16.66%, 
+        rgba(208, 222, 33, 1) 33.33%, 
+        rgba(79, 220, 74, 1) 50%, 
+        rgba(63, 218, 216, 1) 66.66%, 
+        rgba(47, 201, 226, 1) 83.33%, 
+        rgba(28, 127, 238, 1) 100%);
+    background-size: 600% 100%;
+    z-index: 1000;
+    animation: rgb-glow 8s ease-in-out infinite; /* Geschwindigkeit und Leistung optimiert */
+}
+
+/* Animation der RGB-Leiste */
+@keyframes rgb-glow {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* Hintergrundfarbe für Pings weniger intensiv gestalten */
+.mention {
+    background-color: rgba(0, 255, 0, 0.2) !important; /* Weniger intensives Grün für bessere Lesbarkeit */
+    color: #000000 !important; /* Schwarzer Text für besseren Kontrast */
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover-Effekt für Pings */
+.mention:hover {
+    background-color: rgba(0, 255, 0, 0.3) !important; /* Leichte Änderung der Hintergrundfarbe beim Hover */
+}
+
+/* Default role mention styling */
+.roleMention {
+    background-color: var(--role-color) !important; /* Use role-specific color */
+    color: #ffffff !important; /* Make the text white for better contrast */
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+/* Highlight the message if the user owns the role being mentioned */
+.message-2qnXI6.role-highlight {
+    background-color: var(--role-color) !important; /* Use role-specific color for highlight */
+    opacity: 0.9; /* Lightly transparent for subtle highlighting */
+    transition: background-color 0.2s ease;
+}
+
+/* Hover effect for mentions */
+.mention:hover {
+    background-color: rgba(0, 255, 0, 0.3) !important; /* Hover effect with a slightly more visible color */
+}
